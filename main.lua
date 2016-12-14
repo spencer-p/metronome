@@ -51,7 +51,7 @@ function love.update(dt)
 		metronome.counter = metronome.counter + dt
 		if metronome.counter >= 60/tempo.value then
 			metronome.click:play()
-			metronome.counter = 0
+			metronome.counter = metronome.counter - 60/tempo.value
 		end
 	end
 
