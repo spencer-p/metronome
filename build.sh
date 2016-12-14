@@ -11,4 +11,4 @@ if [[ ! -d $BUILDPATH ]]; then
 	mkdir $BUILDPATH
 fi
 
-zip $BUILDPATH/metronome-$VERSION.zip ${CODE[@]} ${ASSETS[@]}
+zip $BUILDPATH/metronome-$VERSION.love ${CODE[@]} ${ASSETS[@]}
