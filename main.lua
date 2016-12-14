@@ -15,9 +15,22 @@ function love.load()
 	time = Dial(3*love.graphics.getWidth()/4, 5*love.graphics.getHeight()/6, love.graphics.getHeight()/9)
 	targettempo = Dial(love.graphics.getWidth()/4, 5*love.graphics.getHeight()/6, love.graphics.getHeight()/9)
 	increment = 0
+
+	metronome = {
+		click = love.audio.newSource("click.ogg"),
+		counter = 0
+	}
 end
 
 function love.update(dt)
+	if tempo.value > 0 then
+		metronome.counter = metronome.counter + dt
+		if metronome.counter > 60/tempo.value then
+			metronome.click:play()
+			metronome.counter = 0
+		end
+	end
+
 	time.value = time.value - dt
 
 	tempo:update(dt)
