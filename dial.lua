@@ -5,6 +5,7 @@
 Dial = Class{}
 
 function Dial:init(x, y, radius)
+	self.isDial = true
 	self.pos, self.radius = vector(x, y), radius
 	self.value = 0
 end
@@ -14,14 +15,14 @@ function Dial:update(dt)
 end
 
 function Dial:draw()
-	love.graphics.setColor(0, 0, 0)
+	love.graphics.setColor(0x15, 0x15, 0x15)
 	love.graphics.circle("fill", self.pos.x, self.pos.y, self.radius)
-	love.graphics.setColor(0xff, 0xff, 0xff)
+	love.graphics.setColor(0x6f, 0xc2, 0xef)
 	love.graphics.circle("fill", self.pos.x, self.pos.y, self.radius/3)
 end
 
 function Dial:mousepressed(x, y)
-	self.pressed = true
+	self.pressed = self.pos:dist(vector(x, y)) <= self.radius
 end
 
 function Dial:mousereleased(x, y)
