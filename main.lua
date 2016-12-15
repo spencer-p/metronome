@@ -44,9 +44,13 @@ function love.load()
 		click = love.audio.newSource("click.ogg"),
 		counter = 0
 	}
+
+	running = true
 end
 
 function love.update(dt)
+	if not running then return end
+
 	if tempo.value > 0 then
 		metronome.counter = metronome.counter + dt
 		if metronome.counter >= 60/tempo.value then
@@ -72,14 +76,21 @@ function love.draw()
 	targettempo:draw()
 	love.graphics.setColor(0, 0, 0)
 	love.graphics.setFont(bigFont)
-	love.graphics.printf(math.floor(tempo.value),
+	love.graphics.printf(math.floor(tempo.value)..(running and "" or " - mute"),
 		0, love.graphics.getHeight()/9, love.graphics.getWidth(), "center")
 	love.graphics.setFont(littleFont)
 	love.graphics.printf(math.floor(targettempo.value).." in "..os.date("!%X", math.floor(time.value)),
 		0, love.graphics.getHeight()/9 + 3*64/2, love.graphics.getWidth(), "center")
 end
 
+function love.focus(f)
+	running = f
+end
+
 function love.mousepressed(x, y)
+	if y < 3*love.graphics.getHeight()/10 then
+		running = not running
+	end
 	tempo:mousepressed(x, y)
 	time:mousepressed(x, y)
 	targettempo:mousepressed(x, y)
