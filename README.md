@@ -5,6 +5,8 @@ It's a metronome in lua/love2d.
 
 Three dials control tempo, target tempo, and the time until the tempo becomes the target tempo.
 
+I wrote this project because I couldn't find any other program that would let me slowly and automatically build up to a tempo, and I really needed that feature to practice. I used this metronome frequently to get better at my brass instruments.
+
 LICENSE
 =======
 > Copyright (c) 2016 Spencer Peterson
